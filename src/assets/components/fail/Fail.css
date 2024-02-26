@@ -1,0 +1,27 @@
+.fail-container {
+max-height: 30 rem;
+margin: 6 rem auto;
+padding: 0,5 rem;
+
+}
+
+.fail-container p {
+font-style: italic;
+margin-top: 1 rem;
+
+}
+
+.fail-container h1 {
+    font-style: italic;
+    margin-top: 1 rem;
+
+
+}
+
+.fail-container {
+text-decoration: line-through;
+color: black;
+text-transform: lowercase;
+
+
+}
