@@ -33,7 +33,7 @@ throw new fail (fail.message)
   "products/addProduct",
   async (newProduct) => {
     try {
-      await ITEMS_API.addProductMid(newProduct);
+      await ITEMS_API.addProductMiddleware(newProduct);
       return newProduct;
     } catch (fail) {
       throw new fail(fail.message);
@@ -44,7 +44,7 @@ export const updateProductThunk = createAsyncThunk(
   "products/updateProduct",
   async (products) => {
     try {
-      await ITEMS_API.updateProductMid(products);
+      await ITEMS_API.updateProductMiddleware(products);
       return products;
     } catch (fail) {
       throw new fail(fail.message);
@@ -56,7 +56,7 @@ export const deleteProductThunk = createAsyncThunk(
   "products/deleteProduct",
   async (id) => {
     try {
-      await ITEMS_API.deleteProductMid(id);
+      await ITEMS_API.deleteProductMiddleware(id);
       return deleteProductThunk;
     } catch (fail) {
       throw new fail(fail.message);
