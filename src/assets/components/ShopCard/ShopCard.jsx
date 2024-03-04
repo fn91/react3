@@ -1,12 +1,17 @@
 import "./ShopCart.css";
 import Card from "./Card";
 import { UserContext } from "../../context/UserContext";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import axios from "axios";
+import Cargando from "../Cargando/Cargando"
 
 
 export default function ShoppingCart() {
   const { user, setUser } = useContext(UserContext);
-  const [products] = useState([]);
+  const [products,setProducts] = useState([]);
+  const[isCharge,isSetCharge]=useState([true]);
+  const[fail,setFail]=useState([null])
+
  
   const productCounter = {};
   user.shoppingCartItems.forEach((id) => {
@@ -35,7 +40,62 @@ export default function ShoppingCart() {
     setUser({ ...user, shoppingCartItems: [] });
   };
 
- 
+
+
+  const API_URL= "http://localhost:3000/products";
+
+  useEffect (()=>{
+
+isSetCharge(true);
+const geteProducts =async () => {
+
+  try {
+
+     const response = await axios.get (API_URL);
+    setProducts(response.data)
+
+
+
+
+  }catch (fail) {
+
+    if (fail.response && fail.response.status === 403){
+      setFail("No stock");
+
+
+
+    }else {
+
+      setFail ("Error stock products")
+
+
+    }
+
+
+
+  } finally {
+
+    setTimeout(()=>{
+      isSetCharge(false);
+    }, 200);
+
+  }
+};
+geteProducts();
+}, []);
+
+
+useEffect(() => {
+  if (fail) {
+    alert("Error loading products");
+    setFail(null);
+  }
+}, [fail]);
+
+if (isCharge) {
+  return <Cargando/>;
+}
+
 
   return (
     <main className="shopping-cart-container">
