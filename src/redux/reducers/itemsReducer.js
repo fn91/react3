@@ -13,7 +13,7 @@ async () =>{
 
 try {
 
-const response = await ITEMS_API.getTrunksMid()
+const response = await ITEMS_API.getTrunksMiddleware()
 return response
 
 }catch (fail){
