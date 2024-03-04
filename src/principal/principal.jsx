@@ -65,7 +65,7 @@ export const router = createBrowserRouter([
 
 {
     path: "*",
-    element:<Fail />,
+    element:<Fail/>,
   },
 
 
